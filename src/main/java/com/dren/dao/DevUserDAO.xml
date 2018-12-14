@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dren.dao.DevUserDAO">
+	<resultMap type="DevUser" id="userMap">
+		<id column="dev_id" property="devId" javaType="Integer"/>
+		<result column="dev_name" property="devName" javaType="String"/>
+		<result column="dev_nickname" property="devNickName" javaType="String"/>
+		<result column="dev_password" property="devPassword" javaType="String"/>
+	</resultMap>
+	<select id="findDevUserByDevName" resultMap="userMap">
+		select * from dev_user where dev_name like #{dev_name}
+	</select>
+</mapper>
