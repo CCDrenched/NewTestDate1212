@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dren.dao.AppinfoDAO">
+
+	<resultMap type="Appinfo" id="appinfoMap">
+<id property="appId" column="id" javaType="int"/>
+<result property="appSoftwarename" column="softwareName" javaType="java.lang.String"/>
+<result property="appApkname" column="APKName" javaType="java.lang.String"/>
+<result property="appRom" column="supportROM" javaType="java.lang.String"/>
+<result property="appLanguage" column="interfaceLanguage" javaType="java.lang.String"/>
+<result property="appSize" column="softwareSize" javaType="int"/>
+<result property="appDowncount" column="downloads" javaType="int"/>
+<result property="appPlateform" column="flatformId" javaType="int"/>
+<result property="appCatelevel1" column="categoryLevel1" javaType="int"/>
+<result property="appCatelevel2" column="categoryLevel2" javaType="int"/>
+<result property="appCatelevel3" column="categoryLevel3" javaType="int"/>
+<result property="appState" column="status" javaType="int"/>
+<result property="appDesc" column="logoPicPath" javaType="java.lang.String"/>
+<result property="appLogo" column="logoLocPath" javaType="java.lang.String"/>
+<result property="appCreatedby" column="createdBy" javaType="int"/>
+<result property="appCreationdate" column="creationDate" javaType="java.util.Date"/>
+<result property="appModifyby" column="modifyBy" javaType="int"/>
+<result property="appModifydate" column="modifyDate" javaType="java.util.Date"/>
+<result property="appLastversion" column="versionId" javaType="java.lang.String"/>
+<result property="plateformname" column="plateformname" javaType="java.lang.String"/>
+<result property="statename" column="statename" javaType="java.lang.String"/>
+<result property="catelv1name" column="catelv1name" javaType="java.lang.String"/>
+<result property="catelv2name" column="catelv2name" javaType="java.lang.String"/>
+<result property="catelv3name" column="catelv3name" javaType="java.lang.String"/>
+	</resultMap>
+	<select id="findAppinfoList" resultMap="appinfoMap">
+		select * from view_appinfo
+		<where>
+			<if test="appCreatedby != 0">
+				and createdBy = #{appCreatedby}
+			</if>
+			<if test="appSoftwarename != null">
+				and softwareName like CONCAT('%',#{appSoftwarename},'%')
+			</if>
+			<if test="appState != 0">
+				and `status` = #{appState}
+			</if>
+			<if test="appPlateform != 0">
+				and flatformId = #{appPlateform}
+			</if>
+			<if test="appCatelevel1 != 0">
+				and categoryLevel1 = #{appCatelevel1}
+			</if>
+			<if test="appCatelevel2 != 0">
+				and categoryLevel2 = #{appCatelevel2}
+			</if>
+			<if test="appCatelevel3 != 0">
+				and categoryLevel3 = #{appCatelevel3}
+			</if>
+		</where>
+		limit #{startIndex},#{rows}
+	</select>
+</mapper>

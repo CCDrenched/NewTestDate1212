@@ -21,13 +21,13 @@
 	<div class="login_wrapper">
 		<div class="animate form login_form">
           <section class="login_content">
-            <form action="${pageContext.request.contextPath }/devLogin" method="post">
-              <h1>APP开发者平台</h1>
+            <form action="${pageContext.request.contextPath }/backendLogin" method="post">
+              <h1>后台管理系统</h1>
               <div>
-                <input name="devName" type="text" class="form-control" placeholder="Username" required="" />
+                <input name="backendName" type="text" class="form-control" placeholder="Username" required="" />
               </div>
               <div>
-                <input name="devPassword"  type="password" class="form-control" placeholder="Password" required="" />
+                <input name="backendPassword"  type="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
               <button class="btn btn-success" type="submit">登录</button>

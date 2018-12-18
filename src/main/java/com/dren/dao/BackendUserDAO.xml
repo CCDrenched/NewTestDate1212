@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dren.dao.BackendUserDAO">
+	<resultMap type="BackendUser" id="userMap">
+		<id property="backendId" column="id" javaType="int" />
+		<result property="backendName" column="userCode" javaType="String" />
+		<result property="backendRoleName" column="userName" javaType="String" />
+		<result property="backendPassword" column="userPassword"
+			javaType="String" />
+	</resultMap>
+	<select id="findUserByName" resultMap="userMap">
+		select backend_user.*,data_dictionary.`typeName` typeCode from
+		backend_user,data_dictionary
+		where backend_user.`userType`=data_dictionary.`valueId`
+		and data_dictionary.`typeName`='用户类型'
+		and backend_user.`userCode`=#{backendName}
+	</select>
+</mapper>
